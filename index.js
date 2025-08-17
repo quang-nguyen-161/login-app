@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 import fs from 'fs';
 import User from './models/user.js'; // Ensure this path is correct
 
-dotenv.config();
+dotenv.config({ quiet: true });
 const app = express();
 
 app.use(express.json());
