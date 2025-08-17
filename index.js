@@ -10,11 +10,9 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const formHtml = fs.readFileSync('form.html', 'utf8');
+const formHtml = fs.readFileSync('./form.html', 'utf8');
+
 app.get('/', (req, res) => {
-  res.send('Hello World');
-});
-app.get('/register', (req, res) => {
   res.send(formHtml);
   res.end();
 });
