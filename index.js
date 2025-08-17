@@ -11,7 +11,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const formHtml = fs.readFileSync('form.html', 'utf8');
-
+app.get('/', (req, res) => {
+  res.send('Hello World');
+});
 app.get('/register', (req, res) => {
   res.send(formHtml);
   res.end();
@@ -37,7 +39,7 @@ console.log(process.env.MONGO_URI);
 
 
 
-app.listen(3000, () => {
-  console.log('Server is running on localhost:3000');
+app.listen(5000, () => {
+  console.log('Server is running on localhost:5000');
 });
 
