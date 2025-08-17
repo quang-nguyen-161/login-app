@@ -2,20 +2,25 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import User from './models/user.js'; // Ensure this path is correct
 
 dotenv.config({ quiet: true });
 const app = express();
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const formHtml = fs.readFileSync('public/form.html', 'utf8');
 
 app.get('/', (req, res) => {
-  res.send(formHtml);
-  res.end();
+  res.sendFile(path.join(__dirname, 'public', 'form.html'));
 });
+
 app.post('/api/register', async (req, res) => {
   const registerData = req.body;
   if (!registerData.username || !registerData.email || !registerData.password) {
